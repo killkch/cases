@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black87,
         title: const Text(
-          'Cases Tools',
+          'Cases',
           style: TextStyle(
             color: Colors.white,
             letterSpacing: -1,
