@@ -1,4 +1,5 @@
 import 'package:cases/hive_database/hive_database_page.dart';
+import 'package:cases/riverpod/riverpod_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -48,6 +49,25 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               print('information is clicked');
               Get.to(() => HiveDatabasePage());
+            },
+            // trailing: Icon(Icons.add),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.ring_volume_rounded,
+              color: Colors.blue,
+            ),
+            title: Text(
+              'Riverpod State management',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black87,
+                letterSpacing: -1,
+              ),
+            ),
+            onTap: () {
+              print('information is clicked');
+              Get.to(() => RiverpodScreen());
             },
             // trailing: Icon(Icons.add),
           ),

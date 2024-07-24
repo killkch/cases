@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "169301699653",
+    "project_id": "cases-6661a",
+    "storage_bucket": "cases-6661a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169301699653:android:7a163ff70f5028ef17472c",
+        "android_client_info": {
+          "package_name": "com.cher.cases"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtEabBm36f_p0uSggeCshrP1Hsqqv4YaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
