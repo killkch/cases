@@ -42,4 +42,14 @@ class Message {
 
   factory Message.fromJson(String source) =>
       Message.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  Future<Message> copyWith({String? imageUrl}) async {
+    return Message(
+      id: id,
+      message: message,
+      createdAt: createdAt,
+      isMine: isMine,
+      imageUrl: imageUrl,
+    );
+  }
 }
