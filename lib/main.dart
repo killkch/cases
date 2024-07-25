@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cases/firebase_options.dart';
 import 'package:cases/hive_database/model/word_model.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +12,11 @@ import 'package:cases/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  //? init firebase !!!!
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   //? init HIVE !!!
   await Hive.initFlutter();
   Hive.registerAdapter(WordModelAdapter());

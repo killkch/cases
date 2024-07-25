@@ -12,7 +12,12 @@
           "package_name": "com.cher.cases"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "169301699653-nkfk32j0oihnb5k8uco289p6i4uv18kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBtEabBm36f_p0uSggeCshrP1Hsqqv4YaI"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169301699653-nkfk32j0oihnb5k8uco289p6i4uv18kf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "169301699653-sg94brj8v3p8ihf3i6n8tecuu3m8t77o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cher.cases"
+              }
+            }
+          ]
         }
       }
     }

@@ -1,3 +1,4 @@
+import 'package:cases/gemini/gemini_screen.dart';
 import 'package:cases/hive_database/hive_database_page.dart';
 import 'package:cases/riverpod/riverpod_screen.dart';
 import 'package:flutter/material.dart';
@@ -73,12 +74,13 @@ class _HomePageState extends State<HomePage> {
           ),
           ListTile(
             leading: Icon(
-              Icons.shopping_cart,
+              Icons.branding_watermark_rounded,
               color: Colors.grey[850],
             ),
-            title: const Text('장바구니'),
+            title: const Text('GEMINI'),
             onTap: () {
               print('cart is clicked');
+              Get.to(() => GeminiScreen());
             },
           ),
         ],
