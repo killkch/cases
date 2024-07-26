@@ -64,8 +64,8 @@ class ChatRepository {
 
         //? define your parts
         final prompt = TextPart(promptText);
-        final mimeType = image..getMimeTypeFromExtension();
-        final imagePart = DataPart(mimeType as String, imageBytes);
+        final mimeType = image.getMimeTypeFromExtension();
+        final imagePart = DataPart(mimeType, imageBytes);
 
         //? make a multimodel request to Gemini AI ............
         response = await imageModel.generateContent([
@@ -92,6 +92,54 @@ class ChatRepository {
           .collection('conversations')
           .doc(userId)
           .collection('messages')
+          .doc(receivedMessageId)
+          .set(responseMessage.toMap());
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  //? send text message
+  Future sendTextMessage({
+    required String textPrompt,
+    required String apiKey,
+  }) async {
+    try {
+      final textModel = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
+      final userId = _auth.currentUser!.uid;
+      final sentMessageId = const Uuid().v4();
+
+      Message message = Message(
+        id: sentMessageId,
+        message: textPrompt,
+        createdAt: DateTime.now(),
+        isMine: true,
+      );
+
+      await _firestore
+          .collection("conversations")
+          .doc(userId)
+          .collection("messages")
+          .doc(sentMessageId)
+          .set(message.toMap());
+
+      //? make a text only request to Gemini AI ....and save the response
+      final response =
+          await textModel.generateContent([Content.text(textPrompt)]);
+      final responseText = response.text;
+      final receivedMessageId = const Uuid().v4();
+
+      final responseMessage = Message(
+        id: receivedMessageId,
+        message: responseText!,
+        createdAt: DateTime.now(),
+        isMine: false,
+      );
+
+      await _firestore
+          .collection("conversations")
+          .doc(userId)
+          .collection("messages")
           .doc(receivedMessageId)
           .set(responseMessage.toMap());
     } catch (e) {
