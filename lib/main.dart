@@ -6,6 +6,7 @@ import 'package:cases/hive_database/model/word_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -14,11 +15,16 @@ import 'package:cases/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  /**
+   * dotenv 초기화 작업입니다. 
+   */
+  await dotenv.load(fileName: ".env");
   //? init firebase !!!!
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   //? init HIVE !!!
   await Hive.initFlutter();
   Hive.registerAdapter(WordModelAdapter());
@@ -27,8 +33,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
-  //! [1] riverpod init
-  runApp(const ProviderScope(child: MyApp()));
+  /**
+   * 리버포드 초기화에 필요한 설정입니다. 
+   * providerscope로 감싸줍니다.
+   */
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -73,7 +84,7 @@ class MyApp extends StatelessWidget {
 
           /**
            * 만약에 스냅샷이 널이면 아직 로그인이 안된 상태로 보고 로그인 페이지로 이동합니다.
-           * 널이 아닌 경우 홈페이지로 보 이동하게 됩니다. 
+           * 널이 아닌 경우 홈페이지로 이동하게 됩니다. 
            */
 
           if (snapshot.data == null) {
