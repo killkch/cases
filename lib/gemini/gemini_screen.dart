@@ -163,5 +163,6 @@ class _GeminiScreenState extends ConsumerState<GeminiScreen> {
           apiKey: apiKey,
           textPrompt: _messageController.text,
         );
+    _messageController.clear();
   }
 }

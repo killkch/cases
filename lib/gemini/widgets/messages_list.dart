@@ -1,4 +1,5 @@
-import 'package:cases/gemini/models/message.dart';
+// ignore_for_file: unnecessary_import
+
 import 'package:cases/gemini/providers/get_all_messages_provider.dart';
 import 'package:cases/gemini/widgets/message_tile.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class MessagesList extends ConsumerWidget {
     return messageData.when(
       data: (messages) {
         return ListView.builder(
-          reverse : true,
+          reverse: true,
           itemCount: messages.length,
           itemBuilder: (context, index) {
             final message = messages.elementAt(index);

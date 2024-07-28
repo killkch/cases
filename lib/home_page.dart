@@ -1,5 +1,6 @@
 import 'package:cases/gemini/gemini_screen.dart';
 import 'package:cases/hive_database/hive_database_page.dart';
+import 'package:cases/provider/provider_screen.dart';
 import 'package:cases/riverpod/riverpod_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,6 +82,17 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               print('cart is clicked');
               Get.to(() => GeminiScreen());
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.heart_broken_outlined,
+              color: Colors.green,
+            ),
+            title: const Text('Provider'),
+            onTap: () {
+              print('cart is clicked');
+              Get.to(() => ProviderScreen());
             },
           ),
         ],

@@ -21,9 +21,8 @@ class ChatRepository {
     required String promptText,
   }) async {
     //? textModel........................
-    final textModel = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
-    final imageModel =
-        GenerativeModel(model: 'gemini-pro-vision', apiKey: apiKey);
+    final textModel = GenerativeModel(model: 'gemini-1.5-pro', apiKey: apiKey);
+    final imageModel = GenerativeModel(model: 'gemini-1.5-pro', apiKey: apiKey);
 
     final userId = _auth.currentUser!.uid;
     final sentMessageId = Uuid().v4();
@@ -41,9 +40,9 @@ class ChatRepository {
         messageId: sentMessageId,
       );
 
-      message = message.copyWith(
+      message = await message.copyWith(
         imageUrl: downloadUrl,
-      ) as Message;
+      );
     }
 
     await _firestore
