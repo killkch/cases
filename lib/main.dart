@@ -5,6 +5,7 @@ import 'package:cases/gemini/screens/login_screen.dart';
 import 'package:cases/hive_database/model/word_model.dart';
 import 'package:cases/provider/counter_provider.dart';
 import 'package:cases/provider/user_provider.dart';
+import 'package:cases/provider_infinite_scroll/ajax_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +33,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(WordModelAdapter());
   await Hive.openBox<WordModel>('word');
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await Future.delayed(const Duration(seconds: 5));
+  //? splash screen init
+  await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
   /**
    * 리버포드 초기화에 필요한 설정입니다. 
@@ -61,8 +61,11 @@ class MyApp extends StatelessWidget {
         provider.ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
-          provider.ChangeNotifierProvider(
+        provider.ChangeNotifierProvider(
           create: (_) => CounterProvider(),
+        ),
+        provider.ChangeNotifierProvider(
+          create: (_) => AjaxProvider(),
         ),
       ],
       child: GetMaterialApp(
@@ -106,7 +109,6 @@ class MyApp extends StatelessWidget {
             if (snapshot.data == null) {
               return const LoginScreen();
             }
-
             return HomePage();
           },
         ),
